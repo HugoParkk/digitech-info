@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { InfoService } from './info.service';
 
 @Controller('info')
@@ -6,7 +6,11 @@ export class InfoController {
   constructor(private readonly infoService: InfoService) {}
 
   @Get()
-  getAllInfo() {
+  getTodayInfo() {
     return this.infoService.getTodayInfo();
+  }
+  @Post()
+  postTodayInfo() {
+    return this.infoService.postTodayInfo();
   }
 }

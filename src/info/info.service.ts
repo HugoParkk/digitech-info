@@ -19,7 +19,26 @@ export class InfoService {
         MLSV_YMD: YML,
       },
     });
-    console.log(products.data.mealServiceDietInfo[1].row[0]);
-    return products.data;
+    let data = products.data.mealServiceDietInfo[1].row[0].DDISH_NM;
+    data = data.replaceAll('<br/>', '\n');
+    data = data.replaceAll('·', ' ');
+    console.log(data);
+    return data;
+  }
+
+  async postTodayInfo() {
+    const data = {
+      version: '2.0',
+      template: {
+        outputs: [
+          {
+            simpleText: {
+              text: this.getTodayInfo(),
+            },
+          },
+        ],
+      },
+    };
+    return data;
   }
 }
