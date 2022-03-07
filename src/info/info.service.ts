@@ -27,13 +27,14 @@ export class InfoService {
   }
 
   async postTodayInfo() {
+    const info = await this.getTodayInfo();
     const data = {
       version: '2.0',
       template: {
         outputs: [
           {
             simpleText: {
-              text: this.getTodayInfo(),
+              text: info,
             },
           },
         ],
