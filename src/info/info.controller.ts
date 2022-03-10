@@ -13,4 +13,8 @@ export class InfoController {
   postTodayInfo() {
     return this.infoService.postTodayInfo();
   }
+  @Get('/tomorrow')
+  getTomorrowInfo() {
+    return this.infoService.getTomorrowInfo();
+  }
 }
