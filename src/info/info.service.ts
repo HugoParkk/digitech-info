@@ -8,14 +8,15 @@ export class InfoService {
   private readonly KEY: string = '7a226d6aaae146cd870ddc0d9307f8a1';
   async getTodayInfo() {
     const date = new Date();
-    const YML: number = date.getFullYear() + date.getMonth() + date.getDate();
+    const YML = `${date.getFullYear()}${('0' + (date.getMonth() + 1)).slice(
+      -2,
+    )}${('0' + date.getDate()).slice(-2)}`;
     const products = await axios.get(this.DATA_URL, {
       params: {
         Key: this.KEY,
         Type: 'json',
         ATPT_OFCDC_SC_CODE: 'B10',
         SD_SCHUL_CODE: '7010572',
-        MMEAL_SC_CODE: '2',
         MLSV_YMD: YML,
       },
     });
