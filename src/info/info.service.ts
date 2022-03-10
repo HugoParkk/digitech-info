@@ -23,6 +23,10 @@ export class InfoService {
     let data = products.data.mealServiceDietInfo[1].row[0].DDISH_NM;
     data = data.replaceAll('<br/>', '\n');
     data = data.replaceAll('·', ' ');
+    data = data.replaceAll('.', '');
+    for (let i = 0; i < 10; i++) {
+      data = data.replaceAll(`${i}`, '');
+    }
     console.log(data);
     return data;
   }
