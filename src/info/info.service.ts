@@ -1,9 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 import { lastValueFrom } from 'rxjs';
+import { runInThisContext } from 'vm';
 
 @Injectable()
 export class InfoService {
+  weekDay = [
+    ' 일 \n',
+    ' 월 \n',
+    ' 화 \n',
+    ' 수 \n',
+    ' 목 \n',
+    ' 금 \n',
+    ' 토 \n',
+  ];
+
   private readonly DATA_URL: string =
     'https://open.neis.go.kr/hub/mealServiceDietInfo';
   private readonly KEY: string = '7a226d6aaae146cd870ddc0d9307f8a1';
@@ -13,6 +24,7 @@ export class InfoService {
     const YML = `${date.getFullYear()}${('0' + (date.getMonth() + 1)).slice(
       -2,
     )}${('0' + date.getDate()).slice(-2)}`;
+    const week: number = date.getDay();
 
     let data;
 
@@ -30,14 +42,14 @@ export class InfoService {
     } catch (error) {
       return '오늘 급식은 없습니다';
     }
-
     data = data.replaceAll('<br/>', '\n');
     data = data.replaceAll('·', '');
     data = data.replaceAll('.', '');
     for (let i = 0; i < 10; i++) {
       data = data.replaceAll(`${i}`, '');
     }
-
+    data = YML + this.weekDay[week] + data;
+    console.log(data);
     return data;
   }
 
@@ -63,6 +75,7 @@ export class InfoService {
     const YML = `${date.getFullYear()}${('0' + (date.getMonth() + 1)).slice(
       -2,
     )}${('0' + (date.getDate() + 1)).slice(-2)}`;
+    const week: number = date.getDay();
 
     let data;
 
@@ -78,7 +91,7 @@ export class InfoService {
       });
       data = products.data.mealServiceDietInfo[1].row[0].DDISH_NM;
     } catch (error) {
-      return '오늘 급식은 없습니다';
+      return '내일 급식은 없습니다';
     }
 
     data = data.replaceAll('<br/>', '\n');
@@ -87,6 +100,8 @@ export class InfoService {
     for (let i = 0; i < 10; i++) {
       data = data.replaceAll(`${i}`, '');
     }
+    data = YML + this.weekDay[week] + data;
+
     return data;
   }
 
