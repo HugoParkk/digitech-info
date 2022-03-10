@@ -38,7 +38,6 @@ export class InfoService {
       data = data.replaceAll(`${i}`, '');
     }
 
-    console.log(data);
     return data;
   }
 
