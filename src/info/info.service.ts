@@ -93,7 +93,7 @@ export class InfoService {
   }
 
   async postTInfo() {
-    const info = await this.getTodayInfo();
+    const info = await this.getTomorrowInfo();
     const data = {
       version: '2.0',
       template: {
