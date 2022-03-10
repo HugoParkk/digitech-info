@@ -76,7 +76,6 @@ export class InfoService {
           MLSV_YMD: YML,
         },
       });
-      console.log(products.data, 'tomorrow---');
       data = products.data.mealServiceDietInfo[1].row[0].DDISH_NM;
     } catch (error) {
       return '오늘 급식은 없습니다';
