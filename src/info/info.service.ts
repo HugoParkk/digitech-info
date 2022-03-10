@@ -92,7 +92,7 @@ export class InfoService {
     return data;
   }
 
-  async postTInfo() {
+  async postTomorrowInfo() {
     const info = await this.getTomorrowInfo();
     const data = {
       version: '2.0',

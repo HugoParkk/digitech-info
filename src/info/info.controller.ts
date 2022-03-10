@@ -22,6 +22,6 @@ export class InfoController {
 
   @Post('/tomorrow')
   postTomorrowInfo() {
-    return this.infoService.postTodayInfo();
+    return this.infoService.postTomorrowInfo();
   }
 }
