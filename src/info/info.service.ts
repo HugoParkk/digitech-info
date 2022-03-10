@@ -91,4 +91,21 @@ export class InfoService {
     }
     return data;
   }
+
+  async postTInfo() {
+    const info = await this.getTodayInfo();
+    const data = {
+      version: '2.0',
+      template: {
+        outputs: [
+          {
+            simpleText: {
+              text: info,
+            },
+          },
+        ],
+      },
+    };
+    return data;
+  }
 }
