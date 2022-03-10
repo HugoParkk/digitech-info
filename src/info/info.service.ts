@@ -84,7 +84,7 @@ export class InfoService {
     }
 
     data = data.replaceAll('<br/>', '\n');
-    data = data.replaceAll('·', ' ');
+    data = data.replaceAll('·', '');
     data = data.replaceAll('.', '');
     for (let i = 0; i < 10; i++) {
       data = data.replaceAll(`${i}`, '');
