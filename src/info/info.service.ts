@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import axios from 'axios';
 import { lastValueFrom } from 'rxjs';
 import { runInThisContext } from 'vm';
@@ -15,11 +15,17 @@ export class InfoService {
     ' 토 \n',
   ];
 
+  logger: Logger;
+  constructor() {
+    this.logger = new Logger();
+  }
+
   private readonly DATA_URL: string =
     'https://open.neis.go.kr/hub/mealServiceDietInfo';
   private readonly KEY: string = '7a226d6aaae146cd870ddc0d9307f8a1';
 
   async getTodayInfo() {
+    let counter = 0;
     const date = new Date();
     const YML = `${date.getFullYear()}${('0' + (date.getMonth() + 1)).slice(
       -2,
@@ -50,6 +56,7 @@ export class InfoService {
     }
     data = YML + this.weekDay[week] + data;
     console.log(data);
+    this.logger.log(`getTodayInfo is triggered ${++counter}times`);
     return data;
   }
 
@@ -71,11 +78,12 @@ export class InfoService {
   }
 
   async getTomorrowInfo() {
+    let counter = 0;
     const date = new Date();
     const YML = `${date.getFullYear()}${('0' + (date.getMonth() + 1)).slice(
       -2,
     )}${('0' + (date.getDate() + 1)).slice(-2)}`;
-    const week: number = date.getDay();
+    const week: number = date.getDay() + 1 > 6 ? 0 : date.getDay() + 1;
 
     let data;
 
@@ -101,7 +109,8 @@ export class InfoService {
       data = data.replaceAll(`${i}`, '');
     }
     data = YML + this.weekDay[week] + data;
-
+    console.log(data);
+    this.logger.log(`getTomorrowInfo is triggered ${++counter}times`);
     return data;
   }
 
