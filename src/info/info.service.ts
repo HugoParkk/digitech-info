@@ -54,7 +54,14 @@ export class InfoService {
     for (let i = 0; i < 10; i++) {
       data = data.replaceAll(`${i}`, '');
     }
-    data = YML + this.weekDay[week] + data;
+    data =
+      date.getFullYear() +
+      '.' +
+      ('0' + (date.getMonth() + 1)).slice(-2) +
+      '.' +
+      ('0' + date.getDate()).slice(-2) +
+      this.weekDay[week] +
+      data;
     console.log(data);
     this.logger.log(`getTodayInfo is triggered ${++counter}times`);
     return data;
