@@ -1,18 +1,16 @@
 import { Injectable, Logger } from '@nestjs/common';
 import axios from 'axios';
-import { lastValueFrom } from 'rxjs';
-import { runInThisContext } from 'vm';
 
 @Injectable()
 export class InfoService {
   weekDay = [
-    ' 일 \n',
-    ' 월 \n',
-    ' 화 \n',
-    ' 수 \n',
-    ' 목 \n',
-    ' 금 \n',
-    ' 토 \n',
+    ' 일 \n\n',
+    ' 월 \n\n',
+    ' 화 \n\n',
+    ' 수 \n\n',
+    ' 목 \n\n',
+    ' 금 \n\n',
+    ' 토 \n\n',
   ];
 
   logger: Logger;
