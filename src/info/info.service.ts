@@ -4,13 +4,13 @@ import axios from 'axios';
 @Injectable()
 export class InfoService {
   weekDay = [
-    ' 일 \n\n',
-    ' 월 \n\n',
-    ' 화 \n\n',
-    ' 수 \n\n',
-    ' 목 \n\n',
-    ' 금 \n\n',
-    ' 토 \n\n',
+    ' 일 \n',
+    ' 월 \n',
+    ' 화 \n',
+    ' 수 \n',
+    ' 목 \n',
+    ' 금 \n',
+    ' 토 \n',
   ];
 
   logger: Logger;
@@ -120,6 +120,7 @@ export class InfoService {
       '.' +
       ('0' + (date.getDate() + 1)).slice(-2) +
       this.weekDay[week] +
+      '\n' +
       data;
     console.log(data);
     this.logger.log(`getTomorrowInfo is triggered ${++counter}times`);
