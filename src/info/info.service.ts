@@ -59,6 +59,7 @@ export class InfoService {
       '.' +
       ('0' + date.getDate()).slice(-2) +
       this.weekDay[week] +
+      '\n' +
       data;
     console.log(data);
     this.logger.log(`getTodayInfo is triggered ${++counter}times`);
