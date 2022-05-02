@@ -47,6 +47,8 @@ export class InfoService {
       return '오늘 급식은 없습니다';
     }
     data = data.replaceAll('<br/>', '\n');
+    data = data.replaceAll('(', '');
+    data = data.replaceAll(')', '');
     data = data.replaceAll('·', '');
     data = data.replaceAll('.', '');
     for (let i = 0; i < 10; i++) {
@@ -109,6 +111,8 @@ export class InfoService {
     }
 
     data = data.replaceAll('<br/>', '\n');
+    data = data.replaceAll('(', '');
+    data = data.replaceAll(')', '');
     data = data.replaceAll('·', '');
     data = data.replaceAll('.', '');
     for (let i = 0; i < 10; i++) {
@@ -123,7 +127,7 @@ export class InfoService {
       this.weekDay[week] +
       '\n' +
       data;
-    console.log(data);
+    console.log(data + '\n');
     this.logger.log(`getTomorrowInfo is triggered ${++counter}times`);
     return data;
   }
